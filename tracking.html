@@ -27,46 +27,48 @@
 				<li><a href="about.html">About</a></li>
 			</ul>
 		</nav>
-<section class="post">
-	<header class="major">
-		<h1>Conviction Portfolio</h1>
-		<p>
-			Public tracking of selected equities.
-			Assumed 10 shares per position.
-			Performance for transparency.
-		</p>
-	</header>
 
-	<!-- PORTFOLIO SUMMARY -->
-	<div id="portfolio-summary" style="padding:20px; background:#111; margin-bottom:30px; border-radius:8px;">
-		<h2>Total Portfolio Value: <span id="totalValue">$0</span></h2>
+<!-- Main -->
+<div id="main">
+
+	<section class="post">
+
+	<h2>Live Portfolio Tracking</h2>
+
+	<!-- Portfolio Totals -->
+	<div style="background:#111; padding:20px; margin-bottom:25px; border-radius:8px;">
+		<h3>Total Portfolio Value</h3>
+		<h2 id="totalValue">$0.00</h2>
 		<p>
-			Total Gain: <span id="totalGain">$0</span>
+			Gain/Loss:
+			<span id="totalGain">$0.00</span>
 			(<span id="totalPercent">0%</span>)
 		</p>
 	</div>
 
-	<hr />
+	<div style="display:flex; gap:30px;">
 
-	<!-- STOCK SELECTOR -->
-	<h3>Select Position</h3>
-	<ul id="stockList" style="list-style:none; padding:0;"></ul>
+		<!-- Stock List -->
+		<div style="width:30%;">
+			<h3>Tracked Stocks</h3>
+			<ul id="stockList" style="list-style:none; padding:0;"></ul>
+		</div>
 
-	<hr />
+		<!-- Chart + Details -->
+		<div style="width:70%;">
+			<div id="chart-wrapper">
+				<div id="tv-chart"></div>
+			</div>
 
-	<!-- CHART -->
-	<div id="tv-chart" style="margin-top:30px;"></div>
+			<div id="stockDetails" style="margin-top:20px;"></div>
+		</div>
 
-	<p id="stockDetails" style="margin-top:20px;"></p>
+	</div>
 
-	<p style="font-size:0.85em; margin-top:40px;">
-		Live market data powered by TradingView.
-		This does not constitute investment advice.
-	</p>
 </section>
 
-		<!-- Main -->
-		<div id="main">
+
+</div>
 
 			
 		<script src="https://s3.tradingview.com/tv.js"></script>
@@ -175,6 +177,12 @@ function updatePortfolioTotals() {
 
 init();
 </script>
-		
+	<style>
+#chart-wrapper iframe {
+	position: relative !important;
+	z-index: 1 !important;
+}
+</style>
+	
 </body>
 </html>
