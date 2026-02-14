@@ -1,153 +1,210 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Live Tracking | Tanwar Thesis</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Tracking | Tanwar Thesis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="tracking-styles.css">
 </head>
-<body class="is-preload">
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Tanwar Thesis</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="macro.html" class="nav-link">Macro</a>
+                <a href="equities.html" class="nav-link">Equities</a>
+                <a href="watchlist.html" class="nav-link">Watchlist</a>
+                <a href="tracking.html" class="nav-link active">Live Tracking</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
 
-	<div id="wrapper">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="page-title">Live Tracking</h1>
+            <p class="page-subtitle">
+                Public tracking of selected equities over time.<br>
+                Inclusion does not imply ownership. Performance displayed for research transparency.
+            </p>
+            <div class="last-update">
+                Last Updated: <span id="lastUpdateTime">Loading...</span>
+            </div>
+        </div>
+    </section>
 
-		<!-- Header -->
-		<header id="header">
-			<a href="index.html" class="logo">Tanwar Thesis</a>
-		</header>
+    <!-- Portfolio Summary -->
+    <section class="summary-section">
+        <div class="container">
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-label">Portfolio Value</div>
+                    <div class="summary-value" id="portfolioValue">$0.00</div>
+                    <div class="summary-change positive" id="portfolioChange">+0.00%</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Today's Change</div>
+                    <div class="summary-value" id="todayChange">$0.00</div>
+                    <div class="summary-change" id="todayChangePercent">0.00%</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">vs S&P 500</div>
+                    <div class="summary-value" id="benchmarkDiff">0.00%</div>
+                    <div class="summary-change" id="benchmarkStatus">—</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Positions</div>
+                    <div class="summary-value" id="positionCount">3</div>
+                    <div class="summary-change neutral">Active</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		<!-- Navigation -->
-		<nav id="nav">
-			<ul class="links">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="macro.html">Macro</a></li>
-				<li><a href="equities.html">Equities</a></li>
-				<li><a href="watchlist.html">Watchlist</a></li>
-				<li class="active"><a href="tracking.html">Live Tracking</a></li>
-				<li><a href="about.html">About</a></li>
-			</ul>
-		</nav>
+    <!-- Stock Tracking Grid -->
+    <section class="tracking-section">
+        <div class="container">
+            <h2 class="section-title">Active Positions</h2>
+            
+            <div class="stocks-grid">
+                <!-- NVIDIA Card -->
+                <div class="stock-card" data-symbol="NVDA">
+                    <div class="stock-header">
+                        <div class="stock-info">
+                            <h3 class="stock-ticker">NVDA</h3>
+                            <p class="stock-name">NVIDIA Corporation</p>
+                        </div>
+                        <div class="stock-price-info">
+                            <div class="current-price" id="price-NVDA">—</div>
+                            <div class="price-change" id="change-NVDA">—</div>
+                        </div>
+                    </div>
+                    <div class="stock-body">
+                        <div class="stock-meta">
+                            <span class="meta-item"><strong>Added:</strong> Feb 13, 2026</span>
+                            <span class="meta-item"><strong>Entry:</strong> <span id="entry-NVDA">$875.00</span></span>
+                            <span class="meta-item"><strong>Shares:</strong> <span id="shares-NVDA">100</span></span>
+                        </div>
+                        <div class="performance-metrics">
+                            <div class="metric">
+                                <div class="metric-label">Position Value</div>
+                                <div class="metric-value" id="value-NVDA">—</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-label">Gain/Loss</div>
+                                <div class="metric-value" id="gainloss-NVDA">—</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-label">Return</div>
+                                <div class="metric-value" id="return-NVDA">—</div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chart-NVDA"></canvas>
+                        </div>
+                    </div>
+                </div>
 
-		<!-- Main -->
-		<div id="main">
+                <!-- Microsoft Card -->
+                <div class="stock-card" data-symbol="MSFT">
+                    <div class="stock-header">
+                        <div class="stock-info">
+                            <h3 class="stock-ticker">MSFT</h3>
+                            <p class="stock-name">Microsoft Corporation</p>
+                        </div>
+                        <div class="stock-price-info">
+                            <div class="current-price" id="price-MSFT">—</div>
+                            <div class="price-change" id="change-MSFT">—</div>
+                        </div>
+                    </div>
+                    <div class="stock-body">
+                        <div class="stock-meta">
+                            <span class="meta-item"><strong>Added:</strong> Feb 2026</span>
+                            <span class="meta-item"><strong>Entry:</strong> <span id="entry-MSFT">$445.00</span></span>
+                            <span class="meta-item"><strong>Shares:</strong> <span id="shares-MSFT">150</span></span>
+                        </div>
+                        <div class="performance-metrics">
+                            <div class="metric">
+                                <div class="metric-label">Position Value</div>
+                                <div class="metric-value" id="value-MSFT">—</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-label">Gain/Loss</div>
+                                <div class="metric-value" id="gainloss-MSFT">—</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-label">Return</div>
+                                <div class="metric-value" id="return-MSFT">—</div>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chart-MSFT"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-			<section class="post">
-				<header class="major">
-					<h1>Live Tracking</h1>
-					<p>
-						Public tracking of selected equities over time.
-						Inclusion does not imply ownership.
-						Performance displayed for research transparency.
-					</p>
-				</header>
+    <!-- Benchmark Section -->
+    <section class="benchmark-section">
+        <div class="container">
+            <h2 class="section-title">Benchmark Comparison</h2>
+            <div class="benchmark-card">
+                <div class="benchmark-header">
+                    <div class="benchmark-info">
+                        <h3 class="benchmark-ticker">SPY</h3>
+                        <p class="benchmark-name">S&P 500 ETF</p>
+                    </div>
+                    <div class="benchmark-price-info">
+                        <div class="current-price" id="price-SPY">—</div>
+                        <div class="price-change" id="change-SPY">—</div>
+                    </div>
+                </div>
+                <div class="benchmark-chart-container">
+                    <canvas id="chart-SPY"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
 
-				<hr />
+    <!-- Disclaimer -->
+    <section class="disclaimer-section">
+        <div class="container">
+            <p class="disclaimer">
+                This page displays live market data for tracking purposes only. 
+                It does not constitute investment advice. All positions are hypothetical for research purposes.
+                Data provided by free market data APIs and may be delayed.
+            </p>
+        </div>
+    </section>
 
-				<h2>NVIDIA (NVDA)</h2>
-				<p><strong>Added:</strong> February 13, 2026</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Location</h4>
+                    <p>Toronto | Kingston | Global Markets</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Email</h4>
+                    <p><a href="mailto:contact@tanwarthesis.com">contact@tanwarthesis.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Tanwar Thesis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-				<div style="margin-bottom: 3em;">
-					<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-					<script type="text/javascript">
-					new TradingView.widget({
-					  "width": "100%",
-					  "height": 400,
-					  "symbol": "NASDAQ:NVDA",
-					  "interval": "D",
-					  "timezone": "America/New_York",
-					  "theme": "dark",
-					  "style": "1",
-					  "locale": "en",
-					  "toolbar_bg": "#1f1f1f",
-					  "enable_publishing": false,
-					  "allow_symbol_change": false
-					});
-					</script>
-				</div>
-
-				<hr />
-
-				<h2>Microsoft (MSFT)</h2>
-				<p><strong>Added:</strong> February 2026</p>
-
-				<div style="margin-bottom: 3em;">
-					<script type="text/javascript">
-					new TradingView.widget({
-					  "width": "100%",
-					  "height": 400,
-					  "symbol": "NASDAQ:MSFT",
-					  "interval": "D",
-					  "timezone": "America/New_York",
-					  "theme": "dark",
-					  "style": "1",
-					  "locale": "en",
-					  "toolbar_bg": "#1f1f1f",
-					  "enable_publishing": false,
-					  "allow_symbol_change": false
-					});
-					</script>
-				</div>
-
-				<hr />
-
-				<h2>S&P 500 Benchmark</h2>
-
-				<div style="margin-bottom: 3em;">
-					<script type="text/javascript">
-					new TradingView.widget({
-					  "width": "100%",
-					  "height": 400,
-					  "symbol": "FOREXCOM:SPXUSD",
-					  "interval": "D",
-					  "timezone": "America/New_York",
-					  "theme": "dark",
-					  "style": "1",
-					  "locale": "en",
-					  "toolbar_bg": "#1f1f1f",
-					  "enable_publishing": false,
-					  "allow_symbol_change": false
-					});
-					</script>
-				</div>
-
-				<p style="font-size: 0.85em;">
-					This page displays live market data for tracking purposes only.
-					It does not constitute investment advice.
-				</p>
-
-			</section>
-
-		</div>
-
-		<!-- Footer -->
-		<footer id="footer">
-			<section class="split contact">
-				<section>
-					<h3>Location</h3>
-					<p>Toronto | Kingston | Global Markets</p>
-				</section>
-				<section>
-					<h3>Email</h3>
-					<p><a href="#">contact@tanwarthesis.com</a></p>
-				</section>
-			</section>
-		</footer>
-
-		<div id="copyright">
-			<ul>
-				<li>&copy; 2026 Tanwar Thesis. All rights reserved.</li>
-			</ul>
-		</div>
-
-	</div>
-
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
+    <script src="tracking-script.js"></script>
 </body>
 </html>
