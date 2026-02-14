@@ -27,127 +27,154 @@
 				<li><a href="about.html">About</a></li>
 			</ul>
 		</nav>
+<section class="post">
+	<header class="major">
+		<h1>Conviction Portfolio</h1>
+		<p>
+			Public tracking of selected equities.
+			Assumed 10 shares per position.
+			Performance for transparency.
+		</p>
+	</header>
+
+	<!-- PORTFOLIO SUMMARY -->
+	<div id="portfolio-summary" style="padding:20px; background:#111; margin-bottom:30px; border-radius:8px;">
+		<h2>Total Portfolio Value: <span id="totalValue">$0</span></h2>
+		<p>
+			Total Gain: <span id="totalGain">$0</span>
+			(<span id="totalPercent">0%</span>)
+		</p>
+	</div>
+
+	<hr />
+
+	<!-- STOCK SELECTOR -->
+	<h3>Select Position</h3>
+	<ul id="stockList" style="list-style:none; padding:0;"></ul>
+
+	<hr />
+
+	<!-- CHART -->
+	<div id="tv-chart" style="margin-top:30px;"></div>
+
+	<p id="stockDetails" style="margin-top:20px;"></p>
+
+	<p style="font-size:0.85em; margin-top:40px;">
+		Live market data powered by TradingView.
+		This does not constitute investment advice.
+	</p>
+</section>
 
 		<!-- Main -->
 		<div id="main">
 
-			<section class="post">
-				<header class="major">
-					<h1>Live Tracking</h1>
-					<p>
-						Public tracking of selected equities over time.
-						Inclusion does not imply ownership.
-						Performance displayed for research transparency.
-					</p>
-				</header>
+			
+		<script src="https://s3.tradingview.com/tv.js"></script>
 
-				<hr />
+<script>
+const shares = 10;
 
-				<h2>NVIDIA (NVDA)</h2>
-				<p><strong>Added:</strong> February 13, 2026</p>
+const stocks = [
+	{
+		ticker: "NASDAQ:NVDA",
+		name: "NVIDIA",
+		dateAdded: "2026-02-13",
+		entryPrice: 720
+	},
+	{
+		ticker: "NASDAQ:MSFT",
+		name: "Microsoft",
+		dateAdded: "2026-02-10",
+		entryPrice: 410
+	}
+];
 
-				<div style="margin-bottom: 3em;">
-					<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-					<script type="text/javascript">
-					new TradingView.widget({
-					  "width": "100%",
-					  "height": 400,
-					  "symbol": "NASDAQ:NVDA",
-					  "interval": "D",
-					  "timezone": "America/New_York",
-					  "theme": "dark",
-					  "style": "1",
-					  "locale": "en",
-					  "toolbar_bg": "#1f1f1f",
-					  "enable_publishing": false,
-					  "allow_symbol_change": false
-					});
-					</script>
-				</div>
+let portfolioEntryTotal = 0;
 
-				<hr />
+function init() {
+	renderStockList();
+	selectStock(0);
+}
 
-				<h2>Microsoft (MSFT)</h2>
-				<p><strong>Added:</strong> February 2026</p>
+function renderStockList() {
+	const list = document.getElementById("stockList");
+	list.innerHTML = "";
+	portfolioEntryTotal = 0;
 
-				<div style="margin-bottom: 3em;">
-					<script type="text/javascript">
-					new TradingView.widget({
-					  "width": "100%",
-					  "height": 400,
-					  "symbol": "NASDAQ:MSFT",
-					  "interval": "D",
-					  "timezone": "America/New_York",
-					  "theme": "dark",
-					  "style": "1",
-					  "locale": "en",
-					  "toolbar_bg": "#1f1f1f",
-					  "enable_publishing": false,
-					  "allow_symbol_change": false
-					});
-					</script>
-				</div>
+	stocks.forEach((stock, index) => {
+		const entryTotal = stock.entryPrice * shares;
+		portfolioEntryTotal += entryTotal;
 
-				<hr />
+		const li = document.createElement("li");
+		li.style.padding = "10px";
+		li.style.cursor = "pointer";
+		li.style.borderBottom = "1px solid #222";
+		li.innerHTML = `
+			<strong>${stock.name}</strong>
+			| Added: ${stock.dateAdded}
+			| Entry: $${stock.entryPrice}
+		`;
 
-				<h2>S&P 500 Benchmark</h2>
+		li.onclick = () => selectStock(index);
+		list.appendChild(li);
+	});
+}
 
-				<div style="margin-bottom: 3em;">
-					<script type="text/javascript">
-					new TradingView.widget({
-					  "width": "100%",
-					  "height": 400,
-					  "symbol": "FOREXCOM:SPXUSD",
-					  "interval": "D",
-					  "timezone": "America/New_York",
-					  "theme": "dark",
-					  "style": "1",
-					  "locale": "en",
-					  "toolbar_bg": "#1f1f1f",
-					  "enable_publishing": false,
-					  "allow_symbol_change": false
-					});
-					</script>
-				</div>
+function selectStock(index) {
+	const stock = stocks[index];
 
-				<p style="font-size: 0.85em;">
-					This page displays live market data for tracking purposes only.
-					It does not constitute investment advice.
-				</p>
+	document.getElementById("tv-chart").innerHTML = "";
 
-			</section>
+	new TradingView.widget({
+		container_id: "tv-chart",
+		width: "100%",
+		height: 450,
+		symbol: stock.ticker,
+		interval: "D",
+		timezone: "America/New_York",
+		theme: "dark",
+		style: "1",
+		locale: "en",
+		toolbar_bg: "#1f1f1f",
+		enable_publishing: false,
+		allow_symbol_change: false
+	});
 
-		</div>
+	// MOCK live pricing (replace later with API)
+	const currentPrice = stock.entryPrice * 1.05;
 
-		<!-- Footer -->
-		<footer id="footer">
-			<section class="split contact">
-				<section>
-					<h3>Location</h3>
-					<p>Toronto | Kingston | Global Markets</p>
-				</section>
-				<section>
-					<h3>Email</h3>
-					<p><a href="#">contact@tanwarthesis.com</a></p>
-				</section>
-			</section>
-		</footer>
+	const entryTotal = stock.entryPrice * shares;
+	const currentTotal = currentPrice * shares;
 
-		<div id="copyright">
-			<ul>
-				<li>&copy; 2026 Tanwar Thesis. All rights reserved.</li>
-			</ul>
-		</div>
+	const gain = currentTotal - entryTotal;
+	const percent = ((gain / entryTotal) * 100).toFixed(2);
 
-	</div>
+	document.getElementById("stockDetails").innerHTML = `
+		Entry Total (10 shares): $${entryTotal.toFixed(2)} <br>
+		Estimated Current Value: $${currentTotal.toFixed(2)} <br>
+		Gain/Loss: $${gain.toFixed(2)} (${percent}%)
+	`;
 
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+	updatePortfolioTotals();
+}
 
+function updatePortfolioTotals() {
+	const portfolioCurrentTotal = portfolioEntryTotal * 1.05;
+	const totalGain = portfolioCurrentTotal - portfolioEntryTotal;
+	const totalPercent = ((totalGain / portfolioEntryTotal) * 100).toFixed(2);
+
+	document.getElementById("totalValue").innerText =
+		"$" + portfolioCurrentTotal.toFixed(2);
+
+	document.getElementById("totalGain").innerText =
+		"$" + totalGain.toFixed(2);
+
+	document.getElementById("totalPercent").innerText =
+		totalPercent + "%";
+}
+
+init();
+</script>
+		
 </body>
 </html>
