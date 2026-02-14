@@ -1,189 +1,153 @@
-/* General Page Styles */
-body {
-    font-family: 'Inter', sans-serif;
-    background: #f8f9fa; /* light gray background */
-    color: #222;
-    margin: 0;
-}
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Live Tracking | Tanwar Thesis</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2em;
-}
+	<div id="wrapper">
 
-/* Navigation */
-.nav {
-    background-color: #1a1a1a;
-    color: #fff;
-    padding: 0.5em 0;
-}
-.nav .nav-brand {
-    font-weight: 700;
-    font-size: 1.5em;
-    color: #ff9900;
-    text-decoration: none;
-}
-.nav .nav-links a {
-    color: #fff;
-    margin-left: 1em;
-    text-decoration: none;
-    font-weight: 500;
-}
-.nav .nav-links a.active {
-    color: #ff9900;
-    border-bottom: 2px solid #ff9900;
-}
+		<!-- Header -->
+		<header id="header">
+			<a href="index.html" class="logo">Tanwar Thesis</a>
+		</header>
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, #ff9900 0%, #ffcc00 100%);
-    color: #fff;
-    text-align: center;
-    padding: 4em 2em;
-    border-radius: 0 0 20px 20px;
-}
-.hero h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
-}
-.hero p {
-    font-size: 1.2em;
-}
+		<!-- Navigation -->
+		<nav id="nav">
+			<ul class="links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="macro.html">Macro</a></li>
+				<li><a href="equities.html">Equities</a></li>
+				<li><a href="watchlist.html">Watchlist</a></li>
+				<li class="active"><a href="tracking.html">Live Tracking</a></li>
+				<li><a href="about.html">About</a></li>
+			</ul>
+		</nav>
 
-/* Summary Cards */
-.summary-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5em;
-    margin-top: 2em;
-}
-.summary-card {
-    background: #fff;
-    padding: 1.5em;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    text-align: center;
-}
-.summary-card .summary-label {
-    font-weight: 500;
-    color: #666;
-}
-.summary-card .summary-value {
-    font-size: 1.8em;
-    margin: 0.5em 0;
-    font-weight: 600;
-}
-.summary-card .summary-change.positive {
-    color: #28a745;
-}
-.summary-card .summary-change.negative {
-    color: #dc3545;
-}
-.summary-card .summary-change.neutral {
-    color: #6c757d;
-}
+		<!-- Main -->
+		<div id="main">
 
-/* Stock Cards */
-.stocks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2em;
-    margin-top: 2em;
-}
-.stock-card {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-.stock-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 1em 1.5em;
-    background-color: #f1f3f5;
-}
-.stock-info h3 {
-    margin: 0;
-    color: #ff9900;
-}
-.stock-info p {
-    margin: 0.2em 0 0;
-    font-size: 0.9em;
-    color: #555;
-}
-.stock-price-info {
-    text-align: right;
-}
-.current-price {
-    font-weight: 700;
-    font-size: 1.2em;
-}
-.price-change.positive {
-    color: #28a745;
-}
-.price-change.negative {
-    color: #dc3545;
-}
+			<section class="post">
+				<header class="major">
+					<h1>Live Tracking</h1>
+					<p>
+						Public tracking of selected equities over time.
+						Inclusion does not imply ownership.
+						Performance displayed for research transparency.
+					</p>
+				</header>
 
-/* Stock Body */
-.stock-body {
-    padding: 1.5em;
-}
-.stock-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    margin-bottom: 1em;
-}
-.meta-item {
-    font-size: 0.85em;
-    color: #666;
-}
-.performance-metrics {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1em;
-}
-.metric-label {
-    font-size: 0.8em;
-    color: #888;
-}
-.metric-value {
-    font-weight: 600;
-}
+				<hr />
 
-/* Charts */
-.chart-container {
-    margin-top: 1em;
-}
+				<h2>NVIDIA (NVDA)</h2>
+				<p><strong>Added:</strong> February 13, 2026</p>
 
-/* Benchmark Section */
-.benchmark-card {
-    background: #fff;
-    padding: 1.5em;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    margin-top: 1em;
-}
-.benchmark-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1em;
-}
-.benchmark-ticker {
-    color: #ff9900;
-}
+				<div style="margin-bottom: 3em;">
+					<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+					<script type="text/javascript">
+					new TradingView.widget({
+					  "width": "100%",
+					  "height": 400,
+					  "symbol": "NASDAQ:NVDA",
+					  "interval": "D",
+					  "timezone": "America/New_York",
+					  "theme": "dark",
+					  "style": "1",
+					  "locale": "en",
+					  "toolbar_bg": "#1f1f1f",
+					  "enable_publishing": false,
+					  "allow_symbol_change": false
+					});
+					</script>
+				</div>
 
-/* Footer */
-.footer {
-    background-color: #1a1a1a;
-    color: #fff;
-    padding: 2em;
-}
-.footer a {
-    color: #ff9900;
-    text-decoration: none;
-}
+				<hr />
+
+				<h2>Microsoft (MSFT)</h2>
+				<p><strong>Added:</strong> February 2026</p>
+
+				<div style="margin-bottom: 3em;">
+					<script type="text/javascript">
+					new TradingView.widget({
+					  "width": "100%",
+					  "height": 400,
+					  "symbol": "NASDAQ:MSFT",
+					  "interval": "D",
+					  "timezone": "America/New_York",
+					  "theme": "dark",
+					  "style": "1",
+					  "locale": "en",
+					  "toolbar_bg": "#1f1f1f",
+					  "enable_publishing": false,
+					  "allow_symbol_change": false
+					});
+					</script>
+				</div>
+
+				<hr />
+
+				<h2>S&P 500 Benchmark</h2>
+
+				<div style="margin-bottom: 3em;">
+					<script type="text/javascript">
+					new TradingView.widget({
+					  "width": "100%",
+					  "height": 400,
+					  "symbol": "FOREXCOM:SPXUSD",
+					  "interval": "D",
+					  "timezone": "America/New_York",
+					  "theme": "dark",
+					  "style": "1",
+					  "locale": "en",
+					  "toolbar_bg": "#1f1f1f",
+					  "enable_publishing": false,
+					  "allow_symbol_change": false
+					});
+					</script>
+				</div>
+
+				<p style="font-size: 0.85em;">
+					This page displays live market data for tracking purposes only.
+					It does not constitute investment advice.
+				</p>
+
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<section class="split contact">
+				<section>
+					<h3>Location</h3>
+					<p>Toronto | Kingston | Global Markets</p>
+				</section>
+				<section>
+					<h3>Email</h3>
+					<p><a href="#">contact@tanwarthesis.com</a></p>
+				</section>
+			</section>
+		</footer>
+
+		<div id="copyright">
+			<ul>
+				<li>&copy; 2026 Tanwar Thesis. All rights reserved.</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>
