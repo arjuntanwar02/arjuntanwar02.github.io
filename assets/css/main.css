@@ -4725,3 +4725,11 @@ input, select, textarea {
         transform: translateY(0);
     }
 }
+/* Scale featured rocket image to 50% */
+.post.featured .image.main img {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* centers the image */
+}
+
